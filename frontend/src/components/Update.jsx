@@ -10,13 +10,13 @@ const Update = () => {
     img_url: "",
   });
   const navigate = useNavigate();
-  const { id } = useParams(); // Get the blog ID from the URL
+  const { id } = useParams(); 
 
-  // Fetch the existing blog data when the component loads
+  
   useEffect(() => {
     axios.get(`http://localhost:3001/get/${id}`)
       .then((res) => {
-        setInputs(res.data); // Pre-fill the form with existing data
+        setInputs(res.data); 
       })
       .catch((err) => {
         console.log(err);
@@ -27,12 +27,11 @@ const Update = () => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  // Function to send the updated data to the backend
   const updateData = async () => {
     try {
       await axios.put(`http://localhost:3001/update/${id}`, inputs);
       alert("Blog updated successfully");
-      navigate("/"); // Navigate back to home page
+      navigate("/"); 
     } catch (err) {
       console.error("Error updating blog:", err);
     }
